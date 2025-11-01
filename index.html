@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Corner</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- الهيدر -->
+  <header>
+    <nav class="navbar">
+      <div class="logo-container">
+        <img src="images/logo.png" alt="Sweet Corner Logo" class="logo">
+        <h1 class="site-name">Sweet Corner</h1>
+      </div>
+
+      <!-- زر القائمة للموبايل -->
+      <div class="menu-toggle" id="menu-toggle">☰</div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="delivery.html">Delivery</a></li>
+        <li><a href="hall.html">Hall</a></li>
+        <li><a href="takeaway.html">Takeaway</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main>
+    <section class="welcome-section">
+      <div class="welcome-overlay">
+        <h2>Welcome to Sweet Corner ☕</h2>
+      </div>
+    </section>
+
+    <section class="menu-section">
+      <div class="menu-container">
+
+        <div class="menu-item">
+          <a href="hot_drink.html"><img src="images/hot_drink.jpg" alt="Hot Drink"></a>
+          <h3>Hot Drink</h3>
+        </div>
+
+        <div class="menu-item">
+          <a href="iced_coffee.html"><img src="images/iced_coffee.jpg" alt="Iced Coffee"></a>
+          <h3>Iced Coffee</h3>
+        </div>
+
+        <div class="menu-item">
+          <a href="smoothies.html"><img src="images/smoothies.jpg" alt="Smoothies"></a>
+          <h3>Smoothies</h3>
+        </div>
+
+        <div class="menu-item">
+          <a href="milkshake.html"><img src="images/milkshake.jpg" alt="Milkshake"></a>
+          <h3>Milkshake</h3>
+        </div>
+
+        <div class="menu-item">
+          <a href="waffles.html"><img src="images/waffles.jpg" alt="Waffles"></a>
+          <h3>Waffles</h3>
+        </div>
+
+        <div class="menu-item">
+          <a href="ice_cream.html"><img src="images/ice_cream.jpg" alt="Ice Cream"></a>
+          <h3>Ice Cream</h3>
+        </div>
+
+        <div class="menu-item">
+          <a href="candy.html"><img src="images/candy.jpg" alt="Candy"></a>
+          <h3>Candy</h3>
+        </div>
+
+        <div class="menu-item">
+          <a href="crepes.html"><img src="images/crepes.jpg" alt="Crepes"></a>
+          <h3>Crepes</h3>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- الفوتر -->
+  <footer class="site-footer">
+    © 2025 Sweet Corner – Crafted with ❤️
+  </footer>
+
+  <!-- سكريبت القائمة -->
+  <script>
+    const toggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

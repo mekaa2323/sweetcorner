@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Corner | Milkshake Menu</title>
+<style>
+:root{
+  --bg: #fff;
+  --panel: #fefefe;
+  --accent: #000;
+  --muted: #333;
+  --card-radius: 12px;
+  --gap: 18px;
+  --maxw: 1200px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.08);
+  --section-color: #000;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Poppins",sans-serif;
+  background:var(--bg);
+  color:var(--section-color);
+  padding:28px 16px;
+}
+.wrap{max-width:var(--maxw);margin:0 auto}
+h1{text-align:center;margin:6px 0 16px;color:var(--accent);font-size:1.6rem;letter-spacing:0.6px;}
+p.lead{text-align:center;margin:0 0 22px;color:var(--muted);}
+.section-title{font-size:1.08rem;color:var(--section-color);font-weight:700;margin:28px 0 12px;text-align:left;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--gap);justify-items:center;}
+.card{background:var(--panel);border-radius:var(--card-radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;display:flex;flex-direction:column;text-align:center;padding:12px;}
+.card:hover{transform:translateY(-8px);box-shadow:0 26px 50px rgba(0,0,0,0.12);}
+.thumb{width:100%;height:180px;background:#f6f3f1;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.name{font-weight:700;font-size:15px;color:var(--section-color);margin-bottom:6px;}
+.price{color:var(--accent);font-weight:700;font-size:14px;margin-bottom:6px;}
+input.qty{width:60px;margin-bottom:6px;padding:6px;border:1px solid #000;border-radius:6px;text-align:center;}
+button.addCart{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;transition:background 0.2s ease;}
+button.addCart:hover{background:#333;}
+.confirm-btn{background:var(--accent);color:#fff;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin-top:20px;display:block;margin-left:auto;margin-right:auto;}
+.confirm-btn:hover{background:#333;}
+footer{margin:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Milkshake Menu</h1>
+<p class="lead">Delicious creamy milkshakes — select quantity and add to cart.</p>
+
+<!-- CLASSIC -->
+<div>
+<div class="section-title">Classic Milkshakes</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/vanilla_milkshake.jpg" alt="Vanilla Milkshake"></div>
+    <div class="name">Vanilla Milkshake</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Vanilla Milkshake',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/chocolate_milkshake.jpg" alt="Chocolate Milkshake"></div>
+    <div class="name">Chocolate Milkshake</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Chocolate Milkshake',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/strawberry_milkshake.jpg" alt="Strawberry Milkshake"></div>
+    <div class="name">Strawberry Milkshake</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Strawberry Milkshake',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/banana_milkshake.jpg" alt="Banana Milkshake"></div>
+    <div class="name">Banana Milkshake</div>
+    <div class="price">78 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Banana Milkshake',78,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- CHOCOLATE & COOKIE -->
+<div>
+<div class="section-title">Chocolate & Cookie Milkshakes</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/oreo_milkshake.jpg" alt="Oreo Milkshake"></div>
+    <div class="name">Oreo Milkshake</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Oreo Milkshake',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/biscoff_milkshake.jpg" alt="Biscoff Milkshake"></div>
+    <div class="name">Biscoff Milkshake</div>
+    <div class="price">90 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Biscoff Milkshake',90,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/kitkat_milkshake.jpg" alt="KitKat Milkshake"></div>
+    <div class="name">KitKat Milkshake</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('KitKat Milkshake',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/nutella_milkshake.jpg" alt="Nutella Milkshake"></div>
+    <div class="name">Nutella Milkshake</div>
+    <div class="price">90 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Nutella Milkshake',90,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- FRUITY -->
+<div>
+<div class="section-title">Fruity Milkshakes</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/mango_milkshake.jpg" alt="Mango Milkshake"></div>
+    <div class="name">Mango Milkshake</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Mango Milkshake',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/blueberry_milkshake.jpg" alt="Blueberry Milkshake"></div>
+    <div class="name">Blueberry Milkshake</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Blueberry Milkshake',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/mixed_berry_milkshake.jpg" alt="Mixed Berry Milkshake"></div>
+    <div class="name">Mixed Berry Milkshake</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Mixed Berry Milkshake',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/coconut_milkshake.jpg" alt="Coconut Milkshake"></div>
+    <div class="name">Coconut Milkshake</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Coconut Milkshake',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- SPECIAL & PREMIUM -->
+<div>
+<div class="section-title">Special & Premium Milkshakes</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/pistachio_milkshake.jpg" alt="Pistachio Milkshake"></div>
+    <div class="name">Pistachio Milkshake</div>
+    <div class="price">95 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Pistachio Milkshake',95,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/caramel_milkshake.jpg" alt="Caramel Milkshake"></div>
+    <div class="name">Caramel Milkshake</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Caramel Milkshake',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/toffee_milkshake.jpg" alt="Toffee Milkshake"></div>
+    <div class="name">Toffee Milkshake</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Toffee Milkshake',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/white_chocolate_milkshake.jpg" alt="White Chocolate Milkshake"></div>
+    <div class="name">White Chocolate Milkshake</div>
+    <div class="price">88 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('White Chocolate Milkshake',88,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- DESSERT -->
+<div>
+<div class="section-title">Dessert-Style Milkshakes</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/brownie_milkshake.jpg" alt="Brownie Milkshake"></div>
+    <div class="name">Brownie Milkshake</div>
+    <div class="price">95 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Brownie Milkshake',95,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/cookies_cream_milkshake.jpg" alt="Cookies & Cream Milkshake"></div>
+    <div class="name">Cookies & Cream Milkshake</div>
+    <div class="price">90 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Cookies & Cream Milkshake',90,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/coffee_milkshake.jpg" alt="Coffee Milkshake"></div>
+    <div class="name">Coffee Milkshake</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Coffee Milkshake',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/bubblegum_milkshake.jpg" alt="Bubblegum Milkshake"></div>
+    <div class="name">Bubblegum Milkshake</div>
+    <div class="price">88 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Bubblegum Milkshake',88,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<button class="confirm-btn" onclick="goToConfirm()">View Cart / Confirm Order</button>
+
+<footer>© <span id="yr"></span> Sweet Corner — All rights reserved.</footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+function addToCart(name, price, qty){
+  qty = parseInt(qty);
+  let cart = JSON.parse(localStorage.getItem('orderData')) || {cart:[]};
+  let existing = cart.cart.find(i=>i.name===name);
+  if(existing){ existing.qty += qty; } 
+  else { cart.cart.push({name,price,qty}); }
+  localStorage.setItem('orderData', JSON.stringify(cart));
+  alert(name + " x" + qty + " added to cart");
+}
+
+function goToConfirm(){
+  let cart = JSON.parse(localStorage.getItem('orderData')) || {cart:[]};
+  if(cart.cart.length === 0){
+    alert("Your cart is empty! Please add products first.");
+    return;
+  }
+  window.location.href = 'confirm.html';
+}
+</script>
+</body>
+</html>
+
+
+
+
+

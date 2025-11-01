@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Corner | Iced Coffee</title>
+<style>
+:root{
+  --bg: #fff;
+  --panel: #fefefe;
+  --accent: #000;
+  --muted: #333;
+  --card-radius: 20px;
+  --gap: 16px;
+  --shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+body{
+  margin:0;
+  font-family:"Poppins",sans-serif;
+  background:var(--bg);
+  color:#000;
+  padding:16px;
+}
+
+.wrap{max-width:1200px;margin:0 auto}
+
+h1{text-align:center;margin:6px 0 16px;font-size:1.8rem;}
+p.lead{text-align:center;margin:0 0 22px;color:var(--muted);}
+.section-title{font-size:1.2rem;color:#000;font-weight:700;margin:28px 0 12px;text-align:left;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--gap);}
+
+.card{
+  background:var(--panel);
+  border-radius:var(--card-radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  padding:12px;
+}
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+.thumb{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:15px;
+  overflow:hidden;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f6f3f1;
+}
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.name{font-weight:700;font-size:16px;margin-bottom:8px;}
+.price{font-weight:700;font-size:15px;color:var(--accent);margin-bottom:8px;}
+input.qty{width:60px;margin-bottom:8px;padding:6px;border:1px solid #000;border-radius:6px;text-align:center;}
+button.addCart{background:#000;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;transition:background 0.2s ease;}
+button.addCart:hover{background:#333;}
+
+.confirm-btn{background:#000;color:#fff;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin-top:20px;display:block;margin-left:auto;margin-right:auto;}
+.confirm-btn:hover{background:#333;}
+
+footer{margin:30px 0 40px;color:var(--muted);font-size:14px;text-align:center;}
+
+/* Responsive */
+@media(max-width:680px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+  h1{font-size:1.5rem;}
+  .card{padding:10px;}
+  .thumb{aspect-ratio:1/1;}
+  input.qty{width:50px;}
+}
+@media(max-width:480px){
+  .grid{grid-template-columns:1fr;}
+  .thumb{height:150px;}
+  button.addCart{padding:6px 10px;font-size:14px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Iced Coffee Menu</h1>
+<p class="lead">Select quantity and click "Add to Cart".</p>
+
+<!-- CLASSIC -->
+<div>
+<div class="section-title">Classic Iced Coffees</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/iced_coffee.jpg" alt="Iced Coffee"></div>
+    <div class="name">Iced Coffee</div>
+    <div class="price">65 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Coffee',65,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_americano.jpg" alt="Iced Americano"></div>
+    <div class="name">Iced Americano</div>
+    <div class="price">70 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Americano',70,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_espresso.jpg" alt="Iced Espresso"></div>
+    <div class="name">Iced Espresso</div>
+    <div class="price">65 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Espresso',65,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_long_black.jpg" alt="Iced Long Black"></div>
+    <div class="name">Iced Long Black</div>
+    <div class="price">70 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Long Black',70,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_flat_white.jpg" alt="Iced Flat White"></div>
+    <div class="name">Iced Flat White</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Flat White',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- MILK-BASED -->
+<div>
+<div class="section-title">Milk-Based Iced Coffees</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/iced_latte.jpg" alt="Iced Latte"></div>
+    <div class="name">Iced Latte</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Latte',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_cappuccino.jpg" alt="Iced Cappuccino"></div>
+    <div class="name">Iced Cappuccino</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Cappuccino',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_caramel_macchiato.jpg" alt="Iced Caramel Macchiato"></div>
+    <div class="name">Iced Caramel Macchiato</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Caramel Macchiato',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_white_mocha.jpg" alt="Iced White Mocha"></div>
+    <div class="name">Iced White Mocha</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced White Mocha',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_spanish_latte.jpg" alt="Iced Spanish Latte"></div>
+    <div class="name">Iced Spanish Latte</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Spanish Latte',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- FLAVORED -->
+<div>
+<div class="section-title">Flavored & Specialty Lattes</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/iced_mocha.jpg" alt="Iced Mocha"></div>
+    <div class="name">Iced Mocha</div>
+    <div class="price">78 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Mocha',78,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_vanilla_latte.jpg" alt="Iced Vanilla Latte"></div>
+    <div class="name">Iced Vanilla Latte</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Vanilla Latte',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_hazelnut_latte.jpg" alt="Iced Hazelnut Latte"></div>
+    <div class="name">Iced Hazelnut Latte</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Hazelnut Latte',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_toffee_nut.jpg" alt="Iced Toffee Nut Latte"></div>
+    <div class="name">Iced Toffee Nut Latte</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Toffee Nut Latte',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_coconut_mocha.jpg" alt="Iced Coconut Mocha"></div>
+    <div class="name">Iced Coconut Mocha</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Coconut Mocha',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_pistachio_latte.jpg" alt="Iced Pistachio Latte"></div>
+    <div class="name">Iced Pistachio Latte</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Pistachio Latte',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_brown_sugar.jpg" alt="Iced Brown Sugar Latte"></div>
+    <div class="name">Iced Brown Sugar Latte</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Brown Sugar Latte',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- COLD BREW -->
+<div>
+<div class="section-title">Cold Brew & Nitro</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/cold_brew.jpg" alt="Cold Brew"></div>
+    <div class="name">Cold Brew</div>
+    <div class="price">78 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Cold Brew',78,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/vanilla_cream_cold_brew.jpg" alt="Vanilla Cream Cold Brew"></div>
+    <div class="name">Vanilla Cream Cold Brew</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Vanilla Cream Cold Brew',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/caramel_cold_brew.jpg" alt="Caramel Cold Brew"></div>
+    <div class="name">Caramel Cold Brew</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Caramel Cold Brew',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/nitro_cold_brew.jpg" alt="Nitro Cold Brew"></div>
+    <div class="name">Nitro Cold Brew</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Nitro Cold Brew',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/sweet_foam_cold_brew.jpg" alt="Sweet Foam Cold Brew"></div>
+    <div class="name">Sweet Foam Cold Brew</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Sweet Foam Cold Brew',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- DESSERT / SPECIALTY -->
+<div>
+<div class="section-title">Dessert-style & Specialty</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/iced_chocolate.jpg" alt="Iced Chocolate"></div>
+    <div class="name">Iced Chocolate</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Chocolate',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_matcha.jpg" alt="Iced Matcha Latte"></div>
+    <div class="name">Iced Matcha Latte</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Matcha Latte',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_white_chocolate.jpg" alt="Iced White Chocolate"></div>
+    <div class="name">Iced White Chocolate</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced White Chocolate',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_biscoff_latte.jpg" alt="Iced Biscoff Latte"></div>
+    <div class="name">Iced Biscoff Latte</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Biscoff Latte',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_oreo_mocha.jpg" alt="Iced Oreo Mocha"></div>
+    <div class="name">Iced Oreo Mocha</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Oreo Mocha',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/iced_coconut_coffee.jpg" alt="Iced Coconut Coffee"></div>
+    <div class="name">Iced Coconut Coffee</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Iced Coconut Coffee',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<button class="confirm-btn" onclick="goToConfirm()">View Cart / Confirm Order</button>
+
+<footer>© <span id="yr"></span> Sweet Corner — All rights reserved.</footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+function addToCart(name, price, qty){
+  qty = parseInt(qty);
+  let cart = JSON.parse(localStorage.getItem('orderData')) || {cart:[]};
+  let existing = cart.cart.find(i=>i.name===name);
+  if(existing){ existing.qty += qty; } 
+  else { cart.cart.push({name,price,qty}); }
+  localStorage.setItem('orderData', JSON.stringify(cart));
+  alert(name + " x" + qty + " added to cart");
+}
+
+function goToConfirm(){
+  let cart = JSON.parse(localStorage.getItem('orderData')) || {cart:[]};
+  if(cart.cart.length === 0){
+    alert("Your cart is empty! Please add products first.");
+    return;
+  }
+  window.location.href = 'confirm.html';
+}
+</script>
+</body>
+</html>
+
+
+
+
+

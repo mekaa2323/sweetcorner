@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order Confirmation — Sweet Corner</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+<style>
+body {
+  font-family:"Poppins",sans-serif;
+  background: #fff; /* خلفية بيضاء */
+  margin:0;
+  padding:28px;
+  position:relative;
+}
+
+.wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  color: #000;
+}
+
+h1{text-align:center;margin-bottom:16px;}
+h2{margin-bottom:12px;}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:6px 0;
+  border-bottom:1px solid #ccc;
+  padding-bottom:6px;
+}
+
+input,select,button{
+  width:100%;
+  padding:8px;
+  margin:6px 0;
+  border:1px solid #000;
+  border-radius:6px;
+}
+
+.cart-item input.qty{
+  width:50px;
+  margin-right:8px;
+}
+
+button{
+  cursor:pointer;
+  font-weight:600;
+}
+
+button.updateBtn{background:#000;color:#fff;border:none;padding:6px 10px;border-radius:6px;margin-left:4px;}
+button.updateBtn:hover{background:#333;}
+button.removeBtn{background:#555;color:#fff;border:none;padding:6px 10px;border-radius:6px;margin-left:4px;}
+button.removeBtn:hover{background:#222;}
+
+#confirmOrder{background:#000;color:#fff;border:none;padding:10px 18px;width:100%;border-radius:6px;cursor:pointer;font-weight:600;}
+#confirmOrder:hover{background:#333;}
+#confirmLocation{background:#555;color:#fff;border:none;padding:8px;border-radius:6px;cursor:pointer;font-weight:600;margin-bottom:6px;}
+#confirmLocation:hover{background:#333;}
+.back-btn{display:block;text-align:center;background:#000;color:#fff;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:600;margin-top:20px;}
+.back-btn:hover{background:#333;}
+#map{height:300px;margin:6px 0;}
+
+@media(max-width:480px){
+  .wrap{padding:12px;}
+  #map{height:200px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Order Confirmation</h1>
+
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+
+<h2>Choose Delivery Method</h2>
+<select id="method">
+  <option value="">-- Select --</option>
+  <option value="Takeaway">Takeaway</option>
+  <option value="Delivery">Delivery</option>
+  <option value="Dine-In">Dine-In</option>
+</select>
+
+<div id="deliveryFields" style="display:none;">
+  <input type="text" id="name" placeholder="Your Name">
+  <input type="text" id="phone" placeholder="Phone Number">
+  <input type="text" id="building" placeholder="Building Number">
+  <input type="text" id="floor" placeholder="Floor">
+  <input type="text" id="apartment" placeholder="Apartment Number">
+  <div id="map"></div>
+  <button type="button" id="confirmLocation">Confirm Location</button>
+  <input type="hidden" id="lat">
+  <input type="hidden" id="lng">
+</div>
+
+<div id="dineinFields" style="display:none;">
+  <input type="text" id="table" placeholder="Table Number">
+</div>
+
+<button id="confirmOrder">Confirm Order</button>
+<a href="index.html" class="back-btn">Back to Menu</a>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+// تحميل السلة
+let cartData = JSON.parse(localStorage.getItem('orderData')) || {cart:[]};
+const cartDiv = document.getElementById('cartItems');
+
+function displayCart(){
+  cartDiv.innerHTML = '';
+  cartData.cart.forEach((item,index)=>{
+    const div = document.createElement('div');
+    div.className='cart-item';
+    div.innerHTML=`
+      ${item.name} x <input type="number" min="1" value="${item.qty}" id="qty-${index}" class="qty"> — ${item.price*item.qty} EGP
+      <button class="updateBtn" onclick="updateCart(${index})">Update</button>
+      <button class="removeBtn" onclick="removeFromCart(${index})">Remove</button>
+    `;
+    cartDiv.appendChild(div);
+  });
+}
+
+// تحديث كمية
+function updateCart(index){
+  const newQty = parseInt(document.getElementById(`qty-${index}`).value);
+  if(newQty<1){alert("Quantity must be at least 1"); return;}
+  cartData.cart[index].qty=newQty;
+  localStorage.setItem('orderData',JSON.stringify(cartData));
+  displayCart();
+}
+
+// حذف عنصر
+function removeFromCart(index){
+  if(confirm("Are you sure you want to remove this item?")){
+    cartData.cart.splice(index,1);
+    localStorage.setItem('orderData',JSON.stringify(cartData));
+    displayCart();
+  }
+}
+
+// تحميل السلة عند فتح الصفحة
+displayCart();
+
+// طريقة التسليم
+const methodSelect=document.getElementById('method');
+let map, marker, tempLat, tempLng;
+
+function initMap(){
+  map = L.map('map').setView([30.0444,31.2357],13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a>'
+  }).addTo(map);
+
+  map.on('click',function(e){
+    tempLat=e.latlng.lat;
+    tempLng=e.latlng.lng;
+    if(marker){map.removeLayer(marker);}
+    marker=L.marker([tempLat,tempLng]).addTo(map);
+  });
+
+  document.getElementById('lat').value=30.0444;
+  document.getElementById('lng').value=31.2357;
+}
+
+methodSelect.addEventListener('change',()=>{
+  document.getElementById('deliveryFields').style.display=methodSelect.value==='Delivery'?'block':'none';
+  document.getElementById('dineinFields').style.display=methodSelect.value==='Dine-In'?'block':'none';
+  if(methodSelect.value==='Delivery'){ setTimeout(initMap,100); }
+});
+
+// زر تأكيد الموقع
+document.getElementById('confirmLocation').addEventListener('click',()=>{
+  if(tempLat && tempLng){
+    document.getElementById('lat').value=tempLat;
+    document.getElementById('lng').value=tempLng;
+    alert("Location confirmed!");
+  }else{
+    alert("Please click on the map to select a location first.");
+  }
+});
+
+// تأكيد الطلب
+document.getElementById('confirmOrder').addEventListener('click',()=>{
+  const method=methodSelect.value;
+  if(!method){alert("Please select a delivery method"); return;}
+  let orderData={cart:cartData.cart,method};
+  if(method==='Delivery'){
+    const name=document.getElementById('name').value;
+    const phone=document.getElementById('phone').value;
+    const building=document.getElementById('building').value;
+    const floor=document.getElementById('floor').value;
+    const apartment=document.getElementById('apartment').value;
+    const lat=document.getElementById('lat').value;
+    const lng=document.getElementById('lng').value;
+    if(!name||!phone||!building||!floor||!apartment){alert("Please fill all fields"); return;}
+    orderData.name=name; orderData.phone=phone;
+    orderData.building=building; orderData.floor=floor; orderData.apartment=apartment;
+    orderData.lat=lat; orderData.lng=lng;
+  }
+  if(method==='Dine-In'){
+    const table=document.getElementById('table').value;
+    if(!table){alert("Please enter table number"); return;}
+    orderData.table=table;
+  }
+  localStorage.setItem('finalOrder',JSON.stringify(orderData));
+  window.location.href='thankyou.html';
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

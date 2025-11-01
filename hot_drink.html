@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hot Drinks Menu — Sweet Corner</title>
+<style>
+:root{
+  --bg: #ffffff;
+  --panel: #fefefe;
+  --accent: #000;
+  --muted: #333;
+  --card-radius: 20px;
+  --gap: 20px;
+  --shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+body{
+  margin:0;
+  font-family:"Poppins",sans-serif;
+  background:var(--bg);
+  color:#000;
+  padding:28px 16px;
+}
+
+.wrap{max-width:1200px;margin:0 auto}
+
+h1{text-align:center;margin:6px 0 16px;color:#000;font-size:1.8rem;}
+p.lead{text-align:center;margin:0 0 22px;color:var(--muted);}
+.section-title{font-size:1.1rem;color:#000;font-weight:700;margin:28px 0 12px;text-align:left;}
+.grid{display:grid;grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));gap:var(--gap);justify-content: center;}
+.card{background:var(--panel);border-radius:var(--card-radius);overflow:hidden;box-shadow:var(--shadow);transition: transform 0.2s ease, box-shadow 0.2s ease;display:flex;flex-direction:column;text-align:center;padding:16px;}
+.card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.15);}
+.thumb{width:100%;height:180px;border-radius:15px;overflow:hidden;margin-bottom:12px;display:flex;align-items:center;justify-content:center;background:#f6f3f1;}
+.thumb img{width:100%;height:100%;object-fit:cover;transition: transform 0.2s ease;}
+.card:hover .thumb img{transform: scale(1.05);}
+.name{font-weight:700;font-size:16px;color:#000;margin-bottom:8px;}
+.price{font-weight:700;font-size:15px;color:var(--accent);margin-bottom:8px;}
+input.qty{width:60px;margin-bottom:8px;padding:6px;border:1px solid #000;border-radius:6px;text-align:center;}
+button.addCart{background:#000;color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;transition:background 0.2s ease;}
+button.addCart:hover{background:#333;}
+.confirm-btn{background:#000;color:#fff;padding:12px 24px;border:none;border-radius:8px;cursor:pointer;font-weight:600;margin-top:20px;display:inline-block;}
+.confirm-btn:hover{background:#333;}
+footer{margin:34px 0 60px;color:var(--muted);font-size:14px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Hot Drinks Menu</h1>
+<p class="lead">Select quantity and click "Add to Cart".</p>
+
+<!-- Classic Coffee -->
+<div>
+<div class="section-title">Classic Coffee</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/espresso.jpg" alt="Espresso"></div>
+    <div class="name">Espresso</div>
+    <div class="price">65 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Espresso',65,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/americano.jpg" alt="Americano"></div>
+    <div class="name">Americano</div>
+    <div class="price">70 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Americano',70,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/long_black.jpg" alt="Long Black"></div>
+    <div class="name">Long Black</div>
+    <div class="price">70 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Long Black',70,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/ristretto.jpg" alt="Ristretto"></div>
+    <div class="name">Ristretto</div>
+    <div class="price">65 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Ristretto',65,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/macchiato.jpg" alt="Macchiato"></div>
+    <div class="name">Macchiato</div>
+    <div class="price">68 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Macchiato',68,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- Milk-Based Coffee -->
+<div>
+<div class="section-title">Milk-Based Coffee</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/latte.jpg" alt="Latte"></div>
+    <div class="name">Latte</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Latte',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/cappuccino.jpg" alt="Cappuccino"></div>
+    <div class="name">Cappuccino</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Cappuccino',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/flat_white.jpg" alt="Flat White"></div>
+    <div class="name">Flat White</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Flat White',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/caramel_macchiato.jpg" alt="Caramel Macchiato"></div>
+    <div class="name">Caramel Macchiato</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Caramel Macchiato',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- Flavored & Specialty Coffee -->
+<div>
+<div class="section-title">Flavored & Specialty Coffee</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/mocha.jpg" alt="Mocha"></div>
+    <div class="name">Mocha</div>
+    <div class="price">78 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Mocha',78,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/vanilla_latte.jpg" alt="Vanilla Latte"></div>
+    <div class="name">Vanilla Latte</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Vanilla Latte',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/hazelnut_latte.jpg" alt="Hazelnut Latte"></div>
+    <div class="name">Hazelnut Latte</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Hazelnut Latte',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/brown_sugar_latte.jpg" alt="Brown Sugar Latte"></div>
+    <div class="name">Brown Sugar Latte</div>
+    <div class="price">80 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Brown Sugar Latte',80,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/white_mocha.jpg" alt="White Mocha"></div>
+    <div class="name">White Mocha</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('White Mocha',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/biscoff_latte.jpg" alt="Biscoff Latte"></div>
+    <div class="name">Biscoff Latte</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Biscoff Latte',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- Tea Selection -->
+<div>
+<div class="section-title">Tea Selection</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/black_tea.jpg" alt="Black Tea"></div>
+    <div class="name">Black Tea</div>
+    <div class="price">40 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Black Tea',40,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/green_tea.jpg" alt="Green Tea"></div>
+    <div class="name">Green Tea</div>
+    <div class="price">40 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Green Tea',40,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/chai_latte.jpg" alt="Chai Latte"></div>
+    <div class="name">Chai Latte</div>
+    <div class="price">60 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Chai Latte',60,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/russian_tea.jpg" alt="Russian Tea"></div>
+    <div class="name">Russian Tea</div>
+    <div class="price">58 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Russian Tea',58,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/earl_grey.jpg" alt="Earl Grey Tea"></div>
+    <div class="name">Earl Grey</div>
+    <div class="price">55 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Earl Grey',55,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/mint_tea.jpg" alt="Mint Tea"></div>
+    <div class="name">Mint Tea</div>
+    <div class="price">55 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Mint Tea',55,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/herbal_tea.jpg" alt="Herbal Tea"></div>
+    <div class="name">Herbal Tea</div>
+    <div class="price">60 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Herbal Tea',60,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- Hot Chocolate & Dessert Drinks -->
+<div>
+<div class="section-title">Hot Chocolate & Dessert Drinks</div>
+<section class="grid">
+  <article class="card">
+    <div class="thumb"><img src="images/hot_chocolate.jpg" alt="Hot Chocolate"></div>
+    <div class="name">Hot Chocolate</div>
+    <div class="price">65 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Hot Chocolate',65,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/white_chocolate.jpg" alt="White Chocolate"></div>
+    <div class="name">White Chocolate</div>
+    <div class="price">70 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('White Chocolate',70,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/oreo_hot_chocolate.jpg" alt="Oreo Hot Chocolate"></div>
+    <div class="name">Oreo Hot Chocolate</div>
+    <div class="price">75 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Oreo Hot Chocolate',75,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/spanish_latte.jpg" alt="Spanish Latte"></div>
+    <div class="name">Spanish Latte</div>
+    <div class="price">85 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Spanish Latte',85,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/matcha_latte.jpg" alt="Matcha Latte"></div>
+    <div class="name">Matcha Latte</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Matcha Latte',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+  <article class="card">
+    <div class="thumb"><img src="images/turmeric_latte.jpg" alt="Turmeric Latte"></div>
+    <div class="name">Turmeric Latte</div>
+    <div class="price">82 EGP</div>
+    <input type="number" class="qty" min="1" value="1">
+    <button class="addCart" onclick="addToCart('Turmeric Latte',82,this.previousElementSibling.value)">Add to Cart</button>
+  </article>
+</section>
+</div>
+
+<!-- زر التاكيد للانتقال لصفحة confirm -->
+<div style="text-align:center;">
+  <button class="confirm-btn" onclick="goToConfirm()">View Cart / Confirm Order</button>
+</div>
+
+<footer>© <span id="yr"></span> Sweet Corner — All rights reserved.</footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+function addToCart(name, price, qty){
+  qty = parseInt(qty);
+  let cart = JSON.parse(localStorage.getItem('orderData')) || {cart:[]};
+  let existing = cart.cart.find(i=>i.name===name);
+  if(existing){ existing.qty += qty; } 
+  else { cart.cart.push({name,price,qty}); }
+  localStorage.setItem('orderData', JSON.stringify(cart));
+  alert(name + " x" + qty + " added to cart");
+}
+
+function goToConfirm(){
+  let cart = JSON.parse(localStorage.getItem('orderData')) || {cart:[]};
+  if(cart.cart.length === 0){
+    alert("Your cart is empty! Please add products first.");
+    return;
+  }
+  window.location.href = 'confirm.html';
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
